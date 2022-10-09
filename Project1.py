@@ -156,7 +156,7 @@ def expand_queue(queue, newNodesToAddToQueue, problem, search):
         Include your solution for Greedy search here. Hint: 3 lines of code suffice, but you can have more or less lines of code if you need to.
         You only need to call functions already provided in the code files.
         """
-        queue.insertNodesAtEnd(newNodesToAddToQueue)
+        queue.insertNodesAtFront(newNodesToAddToQueue)
         queue.sortByCost()
         queue.removeRedundantNodes()
     elif search == SearchEnum.A_STAR:
@@ -183,7 +183,9 @@ def expand_queue(queue, newNodesToAddToQueue, problem, search):
         Hint: Note that you'll know that all nodes in a level have been explored when the queue contains only nodes (i.e., paths) of the same length.
         """
         queue.insertNodesAtEnd(newNodesToAddToQueue)
-        queue.keepBestNodes(2)
+        queue.removeRedundantNodes()
+        if(queue.areNodePathLengthsEqual()):
+            queue.keepBestNodes(2)
     return False
 
 
